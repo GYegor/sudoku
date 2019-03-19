@@ -1,5 +1,4 @@
 module.exports = function solveSudoku(matrix) {
-
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       if (matrix[r][c] === 0) {
@@ -8,11 +7,8 @@ module.exports = function solveSudoku(matrix) {
     }
   }
   solve(matrix);
-  if (checkIfCompleat(matrix) && checkForRirht(matrix)) return matrix;
-  // copyMatrix(matrix);
+  if (checkIfCompleat(matrix) && checkForRight(matrix)) return matrix;
   searchSolve(matrix);
-  // searchSolve(matrix);
-
 
   return matrix;
 
@@ -38,7 +34,6 @@ module.exports = function solveSudoku(matrix) {
       for (let cc = 0; cc < 9; cc++) {
         ifHiddenInCol(cc, matrix);
       }
-
       onlyVars(matrix);
       onlyVars(matrix);
       onlyVars(matrix);
@@ -51,18 +46,6 @@ module.exports = function solveSudoku(matrix) {
           ifHiddenInSec(a, b, matrix);
         }
       }
-    
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-  }
-  }
-  function solve1(matrix) {
-    for (let hm = 0; hm < 5; hm++) {
       onlyVars(matrix);
       onlyVars(matrix);
       onlyVars(matrix);
@@ -70,53 +53,7 @@ module.exports = function solveSudoku(matrix) {
       onlyVars(matrix);
       onlyVars(matrix);
       onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      for (let rr = 0; rr < 9; rr++) {
-        ifHiddenInRow(rr, matrix);
-      }
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      for (let cc = 0; cc < 9; cc++) {
-        ifHiddenInCol(cc, matrix);
-      }
-
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      onlyVars(matrix);
-      for (let a = 0; a < 9; a += 3) {
-        for (let b = 0; b < 9; b += 3) {
-          ifHiddenInSec(a, b, matrix);
-        }
-      }
     }
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    onlyVars(matrix);
-    
   }
 
   function searchSolve(arr) {
@@ -129,30 +66,16 @@ module.exports = function solveSudoku(matrix) {
             matrixFix[kk][oo] = matrixFix[kk][oo][pp];
             matrix = matrixFix;
             solve(matrix);
-            if (checkIfCompleat(matrix) && checkForRirht(matrix)) {
-              break all;}
-            if (checkIfCompleat(matrix) && !checkForRirht(matrix)) {
+            if (checkIfCompleat(matrix) && checkForRight(matrix)) {
+              break all;
+            }
+            if (checkIfCompleat(matrix) && !checkForRight(matrix)) {
               matrixFix = copyMatrix(arr);
               continue;
             }
-            if (!checkIfCompleat(matrix))
-             {
-            //   if (pp == arr[kk][oo].length - 1)
-            //     return matrix;
-            // }
-            // searchSolve(matrix);
-            // matrixFix = copyMatrix(arr);
-            // continue;
-            // return matrix;
-            // anton = matrix;
-            searchSolve(matrix);
-            // searchSolve(matrix);
-            // searchSolve(matrix);
-            // searchSolve(matrix);
-
-
-            // return matrix;
-             }
+            if (!checkIfCompleat(matrix)) {
+              searchSolve(matrix);
+            }
           }
         }
       }
@@ -189,7 +112,7 @@ module.exports = function solveSudoku(matrix) {
     }
   }
 
-  function checkForRirht(matrix) {
+  function checkForRight(matrix) {
     let chSumErr = 0;
     // for R
     for (i = 0; i < 9; i++) {
@@ -213,7 +136,7 @@ module.exports = function solveSudoku(matrix) {
       }
     }
     if (chSumErr != 18) return false;
-    // outerS: for
+    // for S
     // if (chSumErr != 27) return false;
     return true;
   }
@@ -278,7 +201,6 @@ module.exports = function solveSudoku(matrix) {
   }
 
   function ifHiddenInRow(row, matrix) {
-
     function arrElem(row) {
       let makeArrR = [];
       let Row = rowFor(row);
@@ -291,7 +213,6 @@ module.exports = function solveSudoku(matrix) {
       }
       return makeArrR;
     }
-
     let elem, count;
     let renewArrElem = arrElem(row);
     for (c = 0; c < 9; c++) {
@@ -310,12 +231,10 @@ module.exports = function solveSudoku(matrix) {
         }
       }
     }
-    // return makeArrR;
     return matrix;
   }
 
   function ifHiddenInCol(column, matrix) {
-    // arrElemC(column);
     function arrElemC(column) {
       let makeArrC = [];
       let Col = columnFor(column);
@@ -328,7 +247,6 @@ module.exports = function solveSudoku(matrix) {
       }
       return makeArrC;
     }
-
     let elem, count;
     let renewarrElemC = arrElemC(column);
     let Colcol = columnFor(column);
@@ -351,13 +269,10 @@ module.exports = function solveSudoku(matrix) {
     for (j = 0; j < 9; j++) {
       matrix[j][column] = Colcol[j];
     }
-
-    // return Colcol;
     return matrix;
   }
 
   function ifHiddenInSec(rs, cs, matrix) {
-    // arrElemS(rs,cs);
     function arrElemS(rs, cs) {
       let makeArrS = [];
       let Sec = sectorFor(rs, cs);
@@ -370,7 +285,6 @@ module.exports = function solveSudoku(matrix) {
       }
       return makeArrS;
     }
-
     let elem, count;
     let renewarrElemS = arrElemS(rs, cs);
     let Secsec = sectorFor(rs, cs);
@@ -395,7 +309,6 @@ module.exports = function solveSudoku(matrix) {
       matrix[rs + 1][cs + k] = Secsec[k + 3];
       matrix[rs + 2][cs + k] = Secsec[k + 6];
     }
-    // return Secsec;
     return matrix;
   }
 
@@ -446,5 +359,4 @@ module.exports = function solveSudoku(matrix) {
     }
     return matrix[hor][vert];
   }
-
 }
